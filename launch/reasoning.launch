@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+ <!-- rosprolog for storing & providing ontology services -->
+  <param name="initial_package" type="string" value="world_percept_assig3" />
+  <node name="rosprolog" pkg="rosprolog" type="rosprolog_node" output="screen"/>
+
+    <!-- Load in the YAML file into rosparam server -->
+  <rosparam command="load" file="$(find world_percept_assig3)/config/loadKnowledge.yaml"/>
+
+</launch>

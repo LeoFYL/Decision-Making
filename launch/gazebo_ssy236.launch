@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- Define the arguments for launching the tiago simulator in gazebo -->	
+  <arg name="end_effector" default="pal-gripper"/>
+  <arg name="public_sim" default="true"/>
+  <arg name="gzclient" default="true"/>
+  <arg name="recording" default="false"/>
+  <arg name="world" default="kitchen_chalmers"/>
+  <arg name="tuck_arm" default="true"/>	  
+  
+  
+  <env name="LC_NUMERIC" value="C" />
+
+  
+  <!-- Gazebo simulation -->
+  <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
+    <arg name="end_effector"      value="$(arg end_effector)"/>
+    <arg name="public_sim" value="$(arg public_sim)"/>
+    <arg name="world"      value="$(arg world)"/>
+    <arg name="gui"      value="$(arg gzclient)"/>
+    <arg name="recording" value="$(arg recording)"/>
+    <arg name="tuck_arm" value="$(arg tuck_arm)"/>	    
+  </include>
+  
+    <!-- Launch Rviz -->
+    <!-- To launch rviz and visualize the robot and its sensors, uncomment the below line-->
+   
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tiago_gazebo)/config/tiago.rviz"/>
+   
+
+  <!-- Launch TF -->
+<!--
+   TODO- Task 1= You need to create a static transformation between /odom and /world so they are the same. You can look at the below line to see an example.
+   -->
+    
+  <node pkg="tf" type="static_transform_publisher" name="StaticTransformation" args="0 0 0 0 0 0 /odom /world 100"/>
+
+
+  <!-- Start perception node -->
+  <node pkg="world_percept_assig3" name="perception_node" type="percept_node" output="screen"/>
+
+  <!-- Start map generator node -->
+  <node pkg="world_percept_assig3" name="map_generator" type="map_generator_node" output="screen"/>
+
+  
+
+  <!-- Start knowledge node -->
+  <node pkg="world_percept_assig3" name="knowledge_node" type="knowledge_node" args="$(arg prolog_file_path)" output="screen"/>
+
+
+
+  <!-- Start reasoning node -->
+  <node pkg="world_percept_assig3" name="reason_node" type="reasoning_node" output="screen"/>
+
+  
+
+  <!-- Start tiago control node -->
+  <node pkg="world_percept_assig3" name="tiago_control_node" type="tiago_control_node" output="screen"/>
+
+  <include file="$(find world_percept_assig3)/launch/reasoning.launch"/>
+
+
+
+
+
+
+
+</launch>

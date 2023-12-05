@@ -1,0 +1,4 @@
+get_class('beer')
+rdf_has(ssy236Ontology:'beer', rdf:type, owl:'Class')
+create_instance_from_class('beer', '0')
+owl_individual_of(ssy236Ontology:'beer_0', ssy236Ontology:'beer')
