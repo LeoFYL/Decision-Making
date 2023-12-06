@@ -102,7 +102,7 @@ bool srv_update_callback(world_percept_assig3::UpdateObjectList::Request  &req,
 
         if (req.object_name == "all")
         {
-            //TODO A03.T01: copy all the pairs (names,poses) into the object list (0.5 pts)
+            //copy all the pairs (names,poses) into the object list 
             for (const auto& pair : map_objs_)
              {
                 res.objects.name.push_back(pair.first);
@@ -126,8 +126,8 @@ bool srv_update_callback(world_percept_assig3::UpdateObjectList::Request  &req,
 
 
 
-            //TODO: A03.T01: Push the information that is obtained about the name and pose 
-            //of the object found in the list in the response variable "res" (0.5pts)
+            // Push the information that is obtained about the name and pose 
+            //of the object found in the list in the response variable "res" 
            
             res.obj_found = true;
         }
@@ -167,23 +167,23 @@ void tf_timer_callback(const ros::TimerEvent& e)
     {
         geometry_msgs::TransformStamped ts;
         
-        std::string object_name = map_objs_.at(i).first; // use the correct variable (0.25 pts)
-        geometry_msgs::Pose obj_pose = map_objs_.at(i).second;  // use the correct variable (0.25 pt)
+        std::string object_name = map_objs_.at(i).first; 
+        geometry_msgs::Pose obj_pose = map_objs_.at(i).second;  
 
         // TF object to populate our TF message
         tf2::Transform tf;
 
-        // use the correct variable to define the right object position (0.5 pts)
+        //to define the right object position
         tf.setOrigin(tf2::Vector3(obj_pose.position.x, obj_pose.position.y, obj_pose.position.z)); 
 
-        // use the correct variable to define the right object orientation (0.5 pts)
+        // to define the right object orientation 
         tf.setRotation(tf2::Quaternion(obj_pose.orientation.x,obj_pose.orientation.y,obj_pose.orientation.z,obj_pose.orientation.w));  
 
         // Transform the TF object to TF message
         ts.transform = tf2::toMsg(tf);
 
         // Set the reference frame for the TF (parent link)
-        // Define the right reference frame (0.5 pts)
+        // Define the right reference frame
         ts.header.frame_id = "world";
         // Set the time stamp for the message
         ts.header.stamp = aux_time;
