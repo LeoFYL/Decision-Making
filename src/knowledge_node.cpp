@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
 
    if(saveQueries_flag)
     { //If the flag is true, then I will configure the file to save the asserted queries
-         //TODO A03.T02: Include the code to load the rosparam from a yaml file (0.4 pts)
+    
          // First define a new string variable "savedQueryFile"
          // Then load the yaml parameter in the new variable
 
