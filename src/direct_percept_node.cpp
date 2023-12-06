@@ -62,7 +62,7 @@ private:
         // TF object to populate our TF message
         tf2::Transform tf;
 
-        //TODO: set the correct origin and rotation of the variable tf. You need to modify the next two lines, the current values are incorrect, fix them with the correct values!
+        // set the correct origin and rotation of the variable tf. You need to modify the next two lines, the current values are incorrect, fix them with the correct values!
         tf.setOrigin(tf2::Vector3(pose.position.x, pose.position.y, pose.position.z));
         tf.setRotation(tf2::Quaternion(pose.orientation.x,pose.orientation.y,pose.orientation.z,pose.orientation.w));
 
@@ -70,8 +70,7 @@ private:
         ts.transform = tf2::toMsg(tf);
 
         // Set the reference frame for the TF (parent link)
-        //TODO: You need to also make some modification to the launch file. 
-        // You need to check which frame_id is defined in the launch file as the reference frame 
+    
         ts.header.frame_id = "world";
         // Set the time stamp for the message
         ts.header.stamp = aux_time;
