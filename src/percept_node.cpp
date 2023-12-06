@@ -90,15 +90,15 @@ private:
         // if the obj is not in the list add it and send it to the srv
 
         // Get object pose
-        //TODO: Identify the right variable that contains the correct object pose (0.5pts)
+        //Identify the right variable that contains the correct object pose 
         geometry_msgs::Pose obj_pose= geometry_msgs::Pose();
 
         // get distance from tiago to obj[i]
-        //TODO: obtain the dx distance between the robot and the objects (0.5 pts)
+        //obtain the dx distance between the robot and the objects 
         double dx= 0;
-        //TODO: obtain the dy distance between the robot and the objects (0.5 pts)
+        //obtain the dy distance between the robot and the objects 
         double dy=0;
-        //TODO: compute the distance between the tiago and the objects (1pt)
+        // compute the distance between the tiago and the objects 
         double d=0;
 
         //IF the robot is closer to the seen objects, then request the service
