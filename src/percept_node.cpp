@@ -104,7 +104,7 @@ private:
         //IF the robot is closer to the seen objects, then request the service
         if (d<1.1)
         {
-            //TODO: Identify the object seen (0.5 pts)
+            //Identify the object seen 
             std::string s= "something";
             // Search for the obj name in the seen_list
             auto it = std::find(v_seen_obj_.begin(), v_seen_obj_.end(), s);
@@ -114,9 +114,9 @@ private:
 
                 world_percept_assig3::UpdateObjectList srv;
 
-                //TODO: send the new seen object to the service (0.25 pts)
+                // send the new seen object to the service 
                 srv.request.object_name="object";
-                //TODO: send the pose of the seen object to the service (0.25 pts)
+                // send the pose of the seen object to the service 
                 srv.request.object_pose= geometry_msgs::Pose();
 
                 if (client_map_generator_.call(srv))
